@@ -1,0 +1,5 @@
+{
+  "name": "SanText Engine",
+  "description": "A cyberpunk-themed browser-based text conversion and formatting tool. No server processing—your data stays local.",
+  "requestFramePermissions": []
+}
