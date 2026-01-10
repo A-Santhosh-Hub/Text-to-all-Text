@@ -1,20 +1,66 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
+## 🧠 TexttoAllText — One Input, Infinite Outputs
 
-# Run and deploy your AI Studio app
+**Live Demo:**  
+🔗 https://sanstudio.neocities.org/TexttoAllText  
 
-This contains everything you need to run your app locally.
+**Description:**  
+TexttoAllText is a smart multi-tool web app that converts a single text input into multiple useful formats.  
+It is designed with a modern **AI-style UI**, smooth animations, and mobile-friendly controls.
 
-View your app in AI Studio: https://ai.studio/apps/drive/1b5oa7kZUsTYzWid-6EtFqu_qyopisi-4
+---
 
-## Run Locally
+## ✨ Features
 
-**Prerequisites:**  Node.js
+- 🔊 **Text → Speech** – Convert text into audio output  
+- 🖼️ **Text → Image Prompt** – Generate creative AI image prompts  
+- 😄 **Text → Emoji** – Turn normal text into expressive emoji text  
+- 💻 **Text → Code** – Convert ideas into structured code format  
+- 📄 **Text → Document** – Prepare text for PDF / notes / export  
+- 📋 **One-Click Copy** – Instantly copy generated output  
+- ⬇️ **Download Output** – Save results for offline use  
+- ❌ **Clear & Reset** – Fast input cleanup  
+
+---
+
+## 🎨 UI / UX Highlights
+
+- Glassmorphism cards  
+- Dark AI-themed interface  
+- Neon glowing icons  
+- Smooth hover & click animations  
+- Typing & fade-in effects for results  
+- Mobile-first responsive layout  
+- Touch-optimized controls  
+
+---
+
+## 🚀 Why This Project?
+
+TexttoAllText saves time by letting users:
+
+- Write once  
+- Convert into multiple formats  
+- Copy or download instantly  
+- Use it for content creation, AI prompts, coding, and notes  
+
+Perfect for **students, creators, developers, and AI users.**
+
+---
+
+### 🛠️ Built With
+
+- HTML  
+- CSS  
+- JavaScript  
+- Static Hosting (Neocities)
+
+---
+
+> Developed by **SanStudio**  
+> Simple. Fast. Powerful.
 
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+
+### 📸 Preview
+
+![3D Model Viewer Screenshot]()
