@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,8 +49,6 @@
     
     <!-- Google Fonts: Inter and Fira Code -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
-    
-    <link rel="icon" type="image/png" href="Logo.png" />
     
     <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
@@ -352,8 +349,11 @@
                         <span id="html-filename" class="font-medium text-sm">index.html</span>
                     </div>
                     <div class="flex gap-2">
-                         <button onclick="resetHtmlView()" class="px-4 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors">
+                         <button onclick="resetHtmlView()" class="px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors">
                             Close
+                        </button>
+                        <button onclick="downloadHtml()" class="px-3 py-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700 rounded-lg transition-colors flex items-center gap-2">
+                            <i class="ph ph-download-simple"></i> Download
                         </button>
                         <button onclick="launchPreview()" class="px-4 py-2 text-sm font-medium bg-brand-600 text-white hover:bg-brand-500 rounded-lg shadow-md transition-colors flex items-center gap-2">
                             <i class="ph ph-rocket-launch"></i> Launch Preview
@@ -740,6 +740,34 @@
             els.htmlWorkspace.classList.remove('hidden');
             
             showToast('Editor ready.', 'success');
+        }
+
+        function downloadHtml() {
+            const content = els.htmlSource.value;
+            if (!content.trim()) {
+                showToast('HTML content is empty', 'error');
+                return;
+            }
+            
+            // Get current filename without extension for the prompt default
+            let currentName = els.htmlFilename.textContent || 'index.html';
+            let defaultName = currentName.replace(/\.html$/i, '');
+            
+            let userInput = prompt("Enter a name for your HTML file:", defaultName);
+            if (userInput === null) return;
+            
+            const fileName = (userInput.trim() || defaultName) + '.html';
+
+            const blob = new Blob([content], { type: 'text/html' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = fileName;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            showToast('HTML Download started', 'success');
         }
 
         function launchPreview() {
