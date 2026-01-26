@@ -4,45 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    <!-- PERMISSIONS & SECURITY POLICY -->
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:;
+        script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com;
+        connect-src 'self' data: blob:;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdn.tailwindcss.com;
+        font-src 'self' https://fonts.gstatic.com https://unpkg.com;
+        img-src 'self' data:;
+    ">
+
     <!-- SEO & Metadata -->
     <title>Text to All Text | Free Online Code Formatter, Cleaner & HTML Viewer</title>
     <meta name="description" content="Free online text tool by SanStudio. Format code (JSON, HTML, CSS, JS, C++, Python), clean text, remove line breaks, and preview HTML files instantly. No download required.">
-    <meta name="keywords" content="text to all text, free text converter, online code formatter, json beautifier, html viewer, clean text, remove spaces, sanstudio, web tool, free, c++ formatter, python indenter">
-    <meta name="author" content="SanStudio">
-    <meta name="robots" content="index, follow">
-    
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Text to All Text | Free Code & Text Tools">
-    <meta property="og:description" content="The ultimate free tool to format code, clean text, and preview HTML files in your browser.">
-    <meta property="og:site_name" content="Text to All Text">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Text to All Text | Free Code & Text Tools">
-    <meta name="twitter:description" content="Format code, clean text, and preview HTML files instantly for free.">
-
-    <!-- JSON-LD Structured Data for Google -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "Text to All Text",
-      "url": "https://your-website-url.com",
-      "description": "A free online utility to format code, clean text, and preview HTML files locally.",
-      "applicationCategory": "DeveloperApplication",
-      "operatingSystem": "Any",
-      "author": {
-        "@type": "Organization",
-        "name": "SanStudio"
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "USD"
-      }
-    }
-    </script>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -135,11 +109,16 @@
                     </div>
                     <div class="flex flex-col">
                         <h1 class="font-bold text-lg leading-tight tracking-tight">Text to All Text</h1>
-                        <span class="text-xs text-slate-500 dark:text-slate-400">Free Format, Clean & Convert Tool</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400">Format, Clean & Convert</span>
                     </div>
                 </div>
                 
-                <div class="flex items-center gap-4">
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <button onclick="openHistoryModal()" class="flex items-center gap-2 px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300 text-sm font-medium">
+                        <i class="ph ph-clock-counter-clockwise text-lg"></i>
+                        <span class="hidden sm:inline">Recent</span>
+                    </button>
+                    
                     <button id="theme-toggle" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors text-slate-600 dark:text-slate-300" aria-label="Toggle Dark Mode">
                         <i class="ph ph-sun text-xl hidden dark:block"></i>
                         <i class="ph ph-moon text-xl block dark:hidden"></i>
@@ -174,15 +153,19 @@
             <div class="lg:col-span-2 flex flex-col gap-4">
                 
                 <!-- Upload Dropzone -->
-                <div id="upload-zone" class="hidden border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-8 text-center hover:border-brand-500 dark:hover:border-brand-500 transition-colors cursor-pointer bg-slate-50 dark:bg-slate-800/50 group">
+                <div id="upload-zone" class="hidden border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-8 text-center hover:border-brand-500 dark:hover:border-brand-500 transition-colors cursor-pointer bg-slate-50 dark:bg-slate-800/50 group relative">
                     <div class="w-12 h-12 bg-brand-100 dark:bg-slate-700 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                         <i class="ph ph-file-arrow-up text-2xl"></i>
                     </div>
                     <h3 class="font-semibold text-lg">Drop your file here</h3>
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-4">Support: .txt, .md, .json, .js, .css, .html, .c, .py</p>
-                    <button onclick="document.getElementById('file-input').click()" class="px-4 py-2 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-sm font-medium shadow-sm hover:bg-slate-50 dark:hover:bg-slate-600">
-                        Browse Files
-                    </button>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Support: .txt, .md, .json, .js, .css, .html, .c, .py</p>
+                    
+                    <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+                        <button onclick="document.getElementById('file-input').click()" class="px-5 py-2.5 bg-brand-600 hover:bg-brand-500 text-white rounded-xl text-sm font-medium shadow-lg shadow-brand-500/20 transition-all">
+                            Browse Files
+                        </button>
+                    </div>
+                    
                     <input type="file" id="file-input" class="hidden" onchange="handleFileUpload(this.files[0])">
                 </div>
 
@@ -206,10 +189,10 @@
                     
                     <!-- Stats Footer -->
                     <div class="h-8 bg-slate-50 dark:bg-slate-900 border-t border-slate-200 dark:border-slate-700 flex items-center px-4 text-xs text-slate-500 dark:text-slate-400 justify-between">
-                        <div class="flex gap-4">
-                            <span id="char-count">0 chars</span>
-                            <span id="word-count">0 words</span>
-                            <span id="line-count">0 lines</span>
+                        <div class="flex gap-4 items-center">
+                            <span id="char-count" class="font-medium transition-colors">0 chars</span>
+                            <span id="word-count" class="border-l border-slate-300 dark:border-slate-700 pl-4">0 words</span>
+                            <span id="line-count" class="hidden sm:inline border-l border-slate-300 dark:border-slate-700 pl-4">0 lines</span>
                         </div>
                         <div id="file-info" class="hidden text-brand-600 dark:text-brand-400 font-medium">
                             <!-- File name injected here -->
@@ -233,15 +216,20 @@
                                 <option value="css">CSS (.css)</option>
                                 <option value="js">JavaScript (.js)</option>
                             </optgroup>
+                            <optgroup label="Social Media">
+                                <option value="youtube">YouTube Title Check</option>
+                                <option value="hashtag">Hashtag Maker</option>
+                            </optgroup>
+                            <optgroup label="Text & Docs">
+                                <option value="passage">Passage / Case</option>
+                                <option value="txt" selected>Plain Text (.txt)</option>
+                                <option value="md">Markdown (.md)</option>
+                                <option value="doc">Word Doc (.doc)</option>
+                            </optgroup>
                             <optgroup label="Programming">
                                 <option value="c">C / C++ (.c)</option>
                                 <option value="java">Java (.java)</option>
                                 <option value="py">Python (.py)</option>
-                            </optgroup>
-                            <optgroup label="Text & Docs">
-                                <option value="txt" selected>Plain Text (.txt)</option>
-                                <option value="md">Markdown (.md)</option>
-                                <option value="doc">Word Doc (.doc)</option>
                             </optgroup>
                         </select>
                         <div class="absolute inset-y-0 right-0 flex items-center px-4 pointer-events-none text-slate-500">
@@ -260,6 +248,31 @@
                                     <option value="4" selected>4 Spaces</option>
                                     <option value="tab">Tab</option>
                                 </select>
+                            </div>
+                        </div>
+
+                        <!-- Passage/Case Options -->
+                        <div id="opt-passage" class="hidden space-y-3">
+                            <div class="flex flex-col gap-2">
+                                <label class="text-sm text-slate-600 dark:text-slate-300 font-medium">Case Conversion</label>
+                                <select id="case-select" class="bg-slate-100 dark:bg-slate-700 border-none rounded-lg text-sm py-2 px-3 focus:ring-1 focus:ring-brand-500 w-full">
+                                    <option value="none">No Change</option>
+                                    <option value="sentence">Sentence case</option>
+                                    <option value="title">Capitalize Words</option>
+                                    <option value="upper">UPPERCASE</option>
+                                    <option value="lower">lowercase</option>
+                                </select>
+                            </div>
+                            <div class="h-px bg-slate-200 dark:bg-slate-700 my-2"></div>
+                        </div>
+
+                        <!-- Social Options (YouTube/Hashtag) -->
+                        <div id="opt-social" class="hidden space-y-3">
+                            <div id="opt-youtube" class="hidden p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-xs text-slate-600 dark:text-slate-400">
+                                <i class="ph ph-info mr-1"></i> Max 100 chars. Check indicator below editor.
+                            </div>
+                            <div id="opt-hashtag" class="hidden p-3 bg-slate-50 dark:bg-slate-900/50 rounded-lg text-xs text-slate-600 dark:text-slate-400">
+                                <i class="ph ph-hash mr-1"></i> Converts text to hashtags. Removes punctuation.
                             </div>
                         </div>
 
@@ -389,6 +402,32 @@
         </div>
     </div>
 
+    <!-- History Modal -->
+    <div id="history-modal" class="fixed inset-0 z-50 hidden">
+        <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeHistoryModal()"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-full max-w-md bg-white dark:bg-slate-900 shadow-2xl border-l border-slate-200 dark:border-slate-800 flex flex-col transform transition-transform duration-300 translate-x-full" id="history-content">
+            <div class="p-6 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center">
+                <h2 class="text-xl font-bold flex items-center gap-2">
+                    <i class="ph ph-clock-counter-clockwise text-brand-600"></i> Recent History
+                </h2>
+                <button onclick="closeHistoryModal()" class="p-2 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-full transition-colors">
+                    <i class="ph ph-x text-lg"></i>
+                </button>
+            </div>
+            
+            <div id="history-list" class="flex-grow overflow-y-auto p-4 space-y-3">
+                <!-- History items will be injected here -->
+                <div class="text-center text-slate-400 mt-10">No recent history found.</div>
+            </div>
+            
+            <div class="p-4 border-t border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-900/50">
+                <button onclick="clearHistory()" class="w-full py-2.5 text-sm font-medium text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors border border-dashed border-red-200 dark:border-red-900/50">
+                    Clear All History
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="mt-auto border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 py-6 transition-colors">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
@@ -416,6 +455,8 @@
             }
         };
 
+        const HISTORY_KEY = 'sanstudio_history';
+
         // --- DOM Elements ---
         const els = {
             editor: document.getElementById('main-editor'),
@@ -424,7 +465,12 @@
             wordCount: document.getElementById('word-count'),
             lineCount: document.getElementById('line-count'),
             optPanelCode: document.getElementById('opt-code'),
+            optPanelPassage: document.getElementById('opt-passage'),
+            optPanelSocial: document.getElementById('opt-social'),
+            optPanelYoutube: document.getElementById('opt-youtube'),
+            optPanelHashtag: document.getElementById('opt-hashtag'),
             optPanelText: document.getElementById('opt-text'),
+            caseSelect: document.getElementById('case-select'),
             inputs: {
                 indent: document.getElementById('indent-size'),
                 trim: document.getElementById('chk-trim'),
@@ -457,6 +503,7 @@
                 state.format = e.target.value;
                 updateUIForFormat();
                 saveSettings();
+                updateStats(); // Force update stats to change counter mode
             });
 
             // Settings Listeners
@@ -470,6 +517,102 @@
             // Setup Global Drag & Drop
             setupGlobalDragAndDrop();
         });
+
+        // --- History Logic (Local Save) ---
+        function saveToHistory(content, format, label = null) {
+            if (!content || content.trim() === '') return;
+            
+            let history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            
+            const newItem = {
+                id: Date.now(),
+                content: content,
+                format: format,
+                timestamp: new Date().toLocaleString(),
+                preview: content.substring(0, 60).replace(/\n/g, ' ') + (content.length > 60 ? '...' : ''),
+                label: label || `${format.toUpperCase()} Snippet`
+            };
+
+            // Add to beginning, remove duplicates if content matches exactly
+            history = history.filter(item => item.content !== content);
+            history.unshift(newItem);
+            
+            // Limit to 10 items
+            if (history.length > 10) history.pop();
+            
+            localStorage.setItem(HISTORY_KEY, JSON.stringify(history));
+        }
+
+        function openHistoryModal() {
+            const modal = document.getElementById('history-modal');
+            const contentDiv = document.getElementById('history-content');
+            const listContainer = document.getElementById('history-list');
+            
+            // Load history
+            const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            
+            if (history.length === 0) {
+                listContainer.innerHTML = `<div class="flex flex-col items-center justify-center h-full text-slate-400">
+                    <i class="ph ph-clock text-4xl mb-2 opacity-50"></i>
+                    <p>No recent history found.</p>
+                </div>`;
+            } else {
+                listContainer.innerHTML = history.map(item => `
+                    <div class="bg-slate-50 dark:bg-slate-800 p-3 rounded-lg border border-slate-200 dark:border-slate-700 hover:border-brand-500 dark:hover:border-brand-500 transition-colors group">
+                        <div class="flex justify-between items-start mb-1">
+                            <span class="text-xs font-bold text-brand-600 bg-brand-50 dark:bg-brand-900/30 px-2 py-0.5 rounded uppercase">${item.label || item.format}</span>
+                            <span class="text-[10px] text-slate-400">${item.timestamp}</span>
+                        </div>
+                        <p class="text-xs text-slate-600 dark:text-slate-300 font-mono truncate mb-2">${item.preview}</p>
+                        <button onclick='loadHistoryItem(${item.id})' class="w-full py-1.5 text-xs font-medium bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded hover:bg-slate-50 dark:hover:bg-slate-600 transition-colors">
+                            Load to Editor
+                        </button>
+                    </div>
+                `).join('');
+            }
+            
+            modal.classList.remove('hidden');
+            // Animate in
+            setTimeout(() => {
+                contentDiv.classList.remove('translate-x-full');
+            }, 10);
+        }
+
+        function closeHistoryModal() {
+            const modal = document.getElementById('history-modal');
+            const contentDiv = document.getElementById('history-content');
+            
+            contentDiv.classList.add('translate-x-full');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300);
+        }
+
+        function loadHistoryItem(id) {
+            const history = JSON.parse(localStorage.getItem(HISTORY_KEY) || '[]');
+            const item = history.find(i => i.id === id);
+            
+            if (item) {
+                els.editor.value = item.content;
+                state.content = item.content;
+                state.format = item.format;
+                els.formatSelect.value = item.format;
+                
+                updateUIForFormat();
+                updateStats();
+                switchTab('editor');
+                closeHistoryModal();
+                showToast('Restored from history', 'success');
+            }
+        }
+
+        function clearHistory() {
+            if (confirm('Clear all recent history?')) {
+                localStorage.removeItem(HISTORY_KEY);
+                openHistoryModal(); // Refresh view
+                showToast('History cleared', 'success');
+            }
+        }
 
         // --- Global Drag & Drop Logic ---
         function setupGlobalDragAndDrop() {
@@ -536,6 +679,19 @@
                 if (['json', 'js', 'css', 'html', 'c', 'java', 'py'].includes(fmt)) {
                     formatted = formatCode(text, fmt);
                 } 
+                // Passage Formatting
+                else if (fmt === 'passage') {
+                    formatted = formatPassage(text);
+                    formatted = cleanText(formatted);
+                }
+                // Social Media - Hashtag
+                else if (fmt === 'hashtag') {
+                    formatted = formatHashtag(text);
+                }
+                // Social Media - YouTube (Just trim, as it's mostly a checker)
+                else if (fmt === 'youtube') {
+                    formatted = cleanText(text); // Basic clean for youtube title
+                }
                 // Plain Text Cleaning
                 else {
                     formatted = cleanText(text);
@@ -543,6 +699,10 @@
 
                 els.editor.value = formatted;
                 state.content = formatted;
+                
+                // Save to History on successful format
+                saveToHistory(formatted, fmt, `Formatted ${fmt.toUpperCase()}`);
+                
                 updateStats();
                 showToast('Formatted & Cleaned successfully!', 'success');
             } catch (e) {
@@ -594,6 +754,35 @@
             }
 
             return text;
+        }
+        
+        function formatPassage(text) {
+            const caseType = els.caseSelect.value;
+            
+            if (caseType === 'upper') {
+                return text.toUpperCase();
+            }
+            if (caseType === 'lower') {
+                return text.toLowerCase();
+            }
+            if (caseType === 'title') {
+                // Capitalize first letter of every word
+                return text.toLowerCase().replace(/\b\w/g, s => s.toUpperCase());
+            }
+            if (caseType === 'sentence') {
+                // Capitalize first letter of string and first letter after punctuation
+                return text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, c => c.toUpperCase());
+            }
+            return text; // 'none'
+        }
+
+        function formatHashtag(text) {
+            // Split by comma or whitespace, filter empty, prefix with #
+            const parts = text.split(/[\s,]+/);
+            return parts
+                .filter(p => p.trim().length > 0)
+                .map(p => '#' + p.trim().toLowerCase().replace(/[^\w]/g, '')) // Remove non-word chars
+                .join(' ');
         }
 
         // A lightweight C-style/CSS beautifier
@@ -684,7 +873,8 @@
             }
             
             // 1. Determine Extension
-            let ext = state.format === 'doc' ? 'txt' : state.format; // Fallback for doc
+            let ext = state.format;
+            if (['passage', 'hashtag', 'youtube', 'doc'].includes(state.format)) ext = 'txt';
             if(state.format === 'c') ext = 'c'; 
 
             // 2. Ask for Filename
@@ -695,7 +885,10 @@
             
             const fileName = userInput.trim() || defaultName;
 
-            // 3. Create Blob and Download
+            // 3. Save to History Before Download
+            saveToHistory(state.content, state.format, `Saved ${fileName}.${ext}`);
+
+            // 4. Create Blob and Download
             const blob = new Blob([state.content], { type: 'text/plain' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -869,21 +1062,57 @@
 
         function updateUIForFormat() {
             const isCode = ['json', 'html', 'css', 'js', 'c', 'java', 'py'].includes(state.format);
+            const isPassage = state.format === 'passage';
+            const isSocial = ['youtube', 'hashtag'].includes(state.format);
             
+            // Hide all first
+            els.optPanelCode.classList.add('hidden');
+            els.optPanelText.classList.add('hidden');
+            els.optPanelPassage.classList.add('hidden');
+            els.optPanelSocial.classList.add('hidden');
+            els.optPanelYoutube.classList.add('hidden');
+            els.optPanelHashtag.classList.add('hidden');
+
             if (isCode) {
                 els.optPanelCode.classList.remove('hidden');
-                els.optPanelText.classList.add('hidden');
+            } else if (isPassage) {
+                els.optPanelText.classList.remove('hidden');
+                els.optPanelPassage.classList.remove('hidden');
+            } else if (isSocial) {
+                els.optPanelSocial.classList.remove('hidden');
+                els.optPanelText.classList.remove('hidden');
+                
+                if (state.format === 'youtube') els.optPanelYoutube.classList.remove('hidden');
+                if (state.format === 'hashtag') els.optPanelHashtag.classList.remove('hidden');
             } else {
-                els.optPanelCode.classList.add('hidden');
                 els.optPanelText.classList.remove('hidden');
             }
         }
 
         function updateStats() {
             const text = els.editor.value;
-            els.charCount.textContent = `${text.length.toLocaleString()} chars`;
+            const len = text.length;
+            els.charCount.textContent = `${len.toLocaleString()} chars`;
             els.wordCount.textContent = `${text.trim() === '' ? 0 : text.trim().split(/\s+/).length.toLocaleString()} words`;
             els.lineCount.textContent = `${text.split('\n').length.toLocaleString()} lines`;
+            
+            // YouTube Title Checker Logic
+            if (state.format === 'youtube') {
+                els.charCount.textContent = `${len} / 100`;
+                
+                // Visual Color Coding
+                els.charCount.classList.remove('text-slate-500', 'text-green-600', 'text-amber-500', 'text-red-600');
+                
+                if (len <= 60) {
+                    els.charCount.classList.add('text-green-600'); // Optimal length
+                } else if (len <= 100) {
+                    els.charCount.classList.add('text-amber-500'); // Near limit
+                } else {
+                    els.charCount.classList.add('text-red-600'); // Over limit
+                }
+            } else {
+                 els.charCount.classList.remove('text-green-600', 'text-amber-500', 'text-red-600');
+            }
         }
 
         function handleEditorKeydown(e) {
