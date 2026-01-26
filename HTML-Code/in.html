@@ -9,8 +9,8 @@
         default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob:;
         script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.tailwindcss.com https://unpkg.com;
         connect-src 'self' data: blob:;
-        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdn.tailwindcss.com;
-        font-src 'self' https://fonts.gstatic.com https://unpkg.com;
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com https://cdn.tailwindcss.com data:;
+        font-src 'self' https://fonts.gstatic.com https://unpkg.com data:;
         img-src 'self' data:;
     ">
 
@@ -154,7 +154,7 @@
                 
                 <!-- Upload Dropzone -->
                 <div id="upload-zone" class="hidden border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-8 text-center hover:border-brand-500 dark:hover:border-brand-500 transition-colors cursor-pointer bg-slate-50 dark:bg-slate-800/50 group relative">
-                    <div class="w-12 h-12 bg-brand-100 dark:bg-slate-700 text-brand-600 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
+                    <div class="w-12 h-12 bg-brand-100 dark:bg-slate-700 text-brand-600 dark:text-brand-400 rounded-full flex items-center justify-center mx-auto mb-3 group-hover:scale-110 transition-transform">
                         <i class="ph ph-file-arrow-up text-2xl"></i>
                     </div>
                     <h3 class="font-semibold text-lg">Drop your file here</h3>
@@ -328,8 +328,8 @@
             <!-- HTML Upload Zone (Shown initially) -->
             <div id="html-upload-zone" class="max-w-xl mx-auto w-full">
                 <div class="border-2 border-dashed border-slate-300 dark:border-slate-700 rounded-2xl p-12 text-center hover:border-brand-500 dark:hover:border-brand-500 transition-colors cursor-pointer bg-white dark:bg-slate-800 group shadow-lg">
-                    <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                        <i class="ph ph-browsers text-3xl"></i>
+                    <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                        <i class="ph ph-file-html text-3xl"></i>
                     </div>
                     <h3 class="font-semibold text-xl mb-2">Select HTML File</h3>
                     <p class="text-sm text-slate-500 dark:text-slate-400 mb-6">Supports single .html files with inline styles/scripts.</p>
@@ -356,7 +356,7 @@
                 <!-- Workspace Toolbar -->
                 <div class="flex items-center justify-between p-4 border-b border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-900">
                     <div class="flex items-center gap-3">
-                        <div class="w-8 h-8 rounded bg-orange-100 dark:bg-orange-900/30 text-orange-600 flex items-center justify-center">
+                        <div class="w-8 h-8 rounded bg-orange-100 dark:bg-orange-900/30 text-orange-600 dark:text-orange-400 flex items-center justify-center">
                             <i class="ph ph-file-html text-lg"></i>
                         </div>
                         <span id="html-filename" class="font-medium text-sm">index.html</span>
