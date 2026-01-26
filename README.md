@@ -1,6 +1,6 @@
 ## 🧠 TexttoAllText — One Input, Infinite Outputs
 
-Text to All Text Utility
+Text to All Text Utility ( https://sanstudio.neocities.org/TexttoAllText )
 
 Text to All Text is a versatile, client-side web application designed to be the "Swiss Army Knife" for developers, content creators, and writers. It unifies code formatting, text cleaning, case conversion, and HTML previewing into a single, lightweight interface.
 
@@ -9,7 +9,7 @@ Built with a privacy-first approach, this tool runs entirely in your browser. No
 🚀 Live Demo
 
 Click here to Launch the Tool
-(Note: Replace with your actual deployment URL)
+([https://sanstudio.neocities.org/TexttoAllText])
 
 📚 Table of Contents
 
