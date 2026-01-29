@@ -183,7 +183,7 @@ Sandboxed Preview: HTML previews run in a secure context to preventing malicious
 
 ❓ Troubleshooting
 
-Q: The icons aren't showing up.
+Q: The icons aren't showing up..
 A: Ensure you have an active internet connection. The icons are loaded from cdnjs.cloudflare.com. If you are offline, the layout will work, but icons will be missing.
 
 Q: The HTML preview is blank.
