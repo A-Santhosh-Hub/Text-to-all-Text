@@ -189,7 +189,7 @@ A: Ensure you have an active internet connection. The icons are loaded from cdnj
 Q: The HTML preview is blank.
 A: Ensure your HTML file has a <body> tag and content. The viewer is designed for standard HTML documents.
 
-Q: I can't download files.
+Q: I can't download files..
 A: Check if your browser has a "Pop-up Blocker" active, although the current method uses a direct anchor link which usually bypasses this.
 
 🤝 Credits
