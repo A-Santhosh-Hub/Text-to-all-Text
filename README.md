@@ -6,10 +6,6 @@ Text to All Text is a versatile, client-side web application designed to be the 
 
 Built with a privacy-first approach, this tool runs entirely in your browser. No data is ever sent to a cloud server, making it safe for sensitive code or private drafts.
 
-🚀 Live Demo
-
-Click here to Launch the Tool
-([https://sanstudio.neocities.org/TexttoAllText])
 
 📚 Table of Contents
 
